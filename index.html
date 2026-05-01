@@ -1,11 +1,613 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Mohammad Manzalawi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammad Manzalawi | CV Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --accent: #22c55e;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #020617, #0f172a, #111827);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(2, 6, 23, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      padding: 95px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.08);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 720px;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #020617;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .profile-card {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      font-weight: 900;
+      color: #020617;
+      margin-bottom: 20px;
+    }
+
+    .profile-card h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 65px 0;
+    }
+
+    .section-title {
+      margin-bottom: 28px;
+    }
+
+    .section-title span {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-top: 8px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #e0f2fe;
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .timeline-item {
+      border-left: 3px solid var(--primary);
+      padding-left: 20px;
+      background: rgba(30, 41, 59, 0.55);
+      border-radius: 0 18px 18px 0;
+      padding-top: 18px;
+      padding-bottom: 18px;
+      padding-right: 18px;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 4px;
+    }
+
+    .timeline-item .date {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    .contact-box {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(34, 197, 94, 0.12));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 40px 24px;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .profile-card {
+        padding: 22px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Mohammad Manzalawi</h1>
-  <h2>Operational Excellence & IT Specialist</h2>
-  <p>Welcome to my personal CV / portfolio website.</p>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">M. Manzalawi</a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">Operational Excellence & IT Specialist</div>
+          <h1>Mohammad <span>Manzalawi</span></h1>
+          <p>
+            IT and operational excellence professional with strong experience in ERP systems,
+            Microsoft Power Platform, process automation, IT infrastructure, cybersecurity,
+            digital transformation, and business process improvement.
+          </p>
+
+          <div class="buttons">
+            <a class="btn btn-primary" href="#contact">Contact Me</a>
+            <a class="btn btn-outline" href="#experience">View Experience</a>
+            <a class="btn btn-outline" href="Mohammad-Manzalawi-CV.pdf" target="_blank">Download CV</a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="avatar">MM</div>
+          <h3>Mohammad Manzalawi</h3>
+          <p>Operational Excellence & IT Specialist</p>
+
+          <div class="info-list">
+            <div>📍 Aqaba, Jordan</div>
+            <div>📧 mr.manzalawi@gmail.com</div>
+            <div>📱 +962 788 098 356</div>
+            <div>💼 Power Platform · ERP · IT Governance</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <span>About Me</span>
+          <h2>Professional Summary</h2>
+        </div>
+
+        <div class="card">
+          <p>
+            I am an Operational Excellence and IT Specialist with over 13 years of experience
+            across ERP systems, business process automation, Power Platform, Power BI,
+            SharePoint, IT infrastructure, networking, cybersecurity controls, and digital
+            transformation projects. I have an MBA and a Bachelor’s degree in Computer
+            Information Systems, with hands-on experience supporting business operations,
+            improving workflows, and delivering practical technology solutions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-title">
+          <span>Skills</span>
+          <h2>Core Competencies</h2>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>ERP & Automation</h3>
+            <div class="skill-tags">
+              <span class="tag">Microsoft Dynamics 365</span>
+              <span class="tag">Power Apps</span>
+              <span class="tag">Power Automate</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">SharePoint</span>
+              <span class="tag">InfoPath</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Infrastructure & Networking</h3>
+            <div class="skill-tags">
+              <span class="tag">Data Center Admin</span>
+              <span class="tag">FortiGate Firewalls</span>
+              <span class="tag">LAN / WAN</span>
+              <span class="tag">Wi-Fi</span>
+              <span class="tag">Backup & DR</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Governance & Delivery</h3>
+            <div class="skill-tags">
+              <span class="tag">IT Policies</span>
+              <span class="tag">Zero Trust</span>
+              <span class="tag">BPMN</span>
+              <span class="tag">BRD Documentation</span>
+              <span class="tag">Agile Sprints</span>
+              <span class="tag">Change Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-title">
+          <span>Experience</span>
+          <h2>Work Experience</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>IT Specialist — Aqaba Development Corporation</h3>
+            <div class="date">2017 – Present | Jordan</div>
+            <ul>
+              <li>Delivered advanced support for hardware, software, and telecommunication systems.</li>
+              <li>Participated in IT projects to improve internal operations and digital services.</li>
+              <li>Developed SharePoint, Power Apps, Power Automate, InfoPath workflows, and documentation.</li>
+              <li>Trained staff on new technologies, best practices, and process improvements.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h3>IT Specialist — Aqaba Facilities Management</h3>
+            <div class="date">2018 – 2023 | Jordan</div>
+            <ul>
+              <li>Managed data center operations, servers, FortiGate firewall, and network infrastructure.</li>
+              <li>Implemented backup, disaster recovery, and cybersecurity controls.</li>
+              <li>Automated routine workflows using CRM systems to reduce manual work.</li>
+              <li>Provided advanced support for LAN, WAN, wireless, telephony, and end-user devices.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h3>Earlier Roles</h3>
+            <div class="date">Previous Experience</div>
+            <ul>
+              <li>IT Officer / Admin — Albaddad Aviation</li>
+              <li>ERP Technical Support — ASEZA</li>
+              <li>Al-Feras Car Transport — Jordan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-title">
+          <span>Education</span>
+          <h2>Academic Background</h2>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>MBA — Master in Business Administration</h3>
+            <p>University of Jordan</p>
+            <p>2017</p>
+          </div>
+
+          <div class="card">
+            <h3>Bachelor of Computer Information Systems</h3>
+            <p>University of Jordan</p>
+            <p>2013</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates">
+      <div class="container">
+        <div class="section-title">
+          <span>Certificates</span>
+          <h2>Professional Certificates</h2>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>JICA ICT Core Personnel Development</h3>
+            <p>IT Architecture — Japan, 2024</p>
+          </div>
+
+          <div class="card">
+            <h3>Google AI Professional Certificate</h3>
+            <p>AI, productivity, data analysis, app building, and responsible AI usage.</p>
+          </div>
+
+          <div class="card">
+            <h3>Cisco DCIT</h3>
+            <p>Troubleshooting Cisco Data Center Infrastructure.</p>
+          </div>
+
+          <div class="card">
+            <h3>Microsoft PL-200</h3>
+            <p>Microsoft Power Platform Functional Consultant.</p>
+          </div>
+
+          <div class="card">
+            <h3>Microsoft PL-400</h3>
+            <p>Microsoft Power Platform Developer.</p>
+          </div>
+
+          <div class="card">
+            <h3>Training & Leadership</h3>
+            <p>Project management facilitation, youth coaching, staff training, and INJAZ volunteering.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Let’s Connect</h2>
+          <p>
+            Interested in IT transformation, Power Platform solutions, business process improvement,
+            or professional collaboration? Feel free to contact me.
+          </p>
+
+          <div class="buttons" style="justify-content: center;">
+            <a class="btn btn-primary" href="mailto:mr.manzalawi@gmail.com">Email Me</a>
+            <a class="btn btn-outline" href="tel:+962788098356">Call Me</a>
+            <a class="btn btn-outline" href="https://github.com/mmanzalawi" target="_blank">GitHub</a>
+            <a class="btn btn-outline" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Mohammad Manzalawi. All Rights Reserved.
+    </div>
+  </footer>
+
 </body>
 </html>
